@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.venv/
+venv/
+
+# Jupyter / Colab
+.ipynb_checkpoints/
+
+# Data & Large Medical Volumes
+data/
+*.nii
+*.nii.gz
+*.h5
+*.npz
+*.npy
+*.zip
+*.tar.gz
+
+# Model Checkpoints
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

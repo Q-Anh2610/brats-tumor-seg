@@ -1,0 +1,67 @@
+# Cấu hình chung khóa theo Quy ước v1.1 (Giữa kỳ)
+project:
+  name: "brats-tumor-seg"
+  seed: 42
+
+data:
+  dataset_name: "BraTS2020"
+  channel_order: ["t1", "t1ce", "t2", "flair"]
+  africa_channel_order: ["t1n", "t1c", "t2w", "t2f"]
+  wt_labels_brats2020: [1, 2, 4]
+  image_size: 224
+  crop_margin_xy: 5
+  zscore_eps: 1.0e-8
+  interpolation:
+    image: "bilinear"
+    mask: "nearest"
+    align_corners: false
+
+splits:
+  seed: 42
+  ratios:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+  splits_file: "configs/splits.json"
+
+augmentation:
+  horizontal_flip_p: 0.5
+  vertical_flip_p: 0.5
+  affine:
+    scale: [0.9, 1.1]
+    translate_percent: [-0.05, 0.05]
+    rotate: [-15, 15]
+    p: 0.5
+  intensity:
+    brightness_contrast_range: [0.9, 1.1]
+    brightness_contrast_p: 0.3
+    gaussian_noise_std: [0.01, 0.05]
+    gaussian_noise_p: 0.2
+
+model:
+  name: "unetplusplus_2d"
+  encoder_name: "resnet34"
+  encoder_weights: "imagenet"
+  in_channels: 4
+  classes: 1
+
+loss:
+  name: "bce_plus_soft_dice"
+  bce_weight: 0.5
+  dice_weight: 0.5
+  dice_smooth: 1.0e-5
+
+training:
+  epochs: 50
+  batch_size: 32
+  optimizer: "AdamW"
+  lr: 3.0e-4
+  weight_decay: 1.0e-4
+  scheduler: "CosineAnnealingLR"
+  early_stopping_patience: 10
+  amp: true
+  num_workers: 4
+
+evaluation:
+  threshold: 0.5
+  hd95_connectivity: 6
