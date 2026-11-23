@@ -44,3 +44,8 @@ brats-tumor-seg/
    ```bash
    python -m src.preprocess.preprocess_nifti --data-dir /content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData --out-dir /content/preprocessed_brats2020
    ```
+5. Huấn luyện U-Net++ 2D trên GPU (Colab L4) và xuất dự đoán 3D tập test:
+   ```bash
+   python -m src.train.train_unetpp --config configs/train_config.yaml --data-dir /content/data --output-dir checkpoints/unetpp_2d
+   python -m src.train.predict_3d --checkpoint checkpoints/unetpp_2d/best_model.pth --data-dir /content/data --split-name test --out-dir results/preds_test_3d
+   ```

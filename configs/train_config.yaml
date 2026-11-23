@@ -61,6 +61,7 @@ training:
   early_stopping_patience: 10
   amp: true
   num_workers: 4
+  train_neg_slice_ratio: 0.5  # Giữ 100% lát có u + lấy mẫu 50% lát não không u mỗi epoch
 
 evaluation:
   threshold: 0.5
