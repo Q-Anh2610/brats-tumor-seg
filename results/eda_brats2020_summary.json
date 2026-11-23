@@ -1,0 +1,21 @@
+{
+  "dataset": "BraTS2020",
+  "num_cases": 369,
+  "total_slices": 57195,
+  "total_tumor_slices": 24422,
+  "tumor_slice_pct": 42.7,
+  "wt_voxel_pct_in_brain": 6.87,
+  "wt_volume_ml": {
+    "mean": 99.55,
+    "std": 59.43,
+    "median": 90.74,
+    "min": 7.29,
+    "max": 361.78
+  },
+  "num_tumor_slices_per_case": {
+    "mean": 66.18,
+    "std": 15.05,
+    "min": 23,
+    "max": 102
+  }
+}
