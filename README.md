@@ -34,9 +34,13 @@ brats-tumor-seg/
    ```
 2. Kiểm tra toàn vẹn 369 ca NIfTI (chạy trên Colab sau khi tải bộ NIfTI từ Kaggle):
    ```bash
-   python -m src.preprocess.validate_nifti --data-dir /content/brats2020/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData
+   python -m src.preprocess.validate_nifti --data-dir /content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData
    ```
-3. Tiền xử lý toàn bộ 369 ca theo Quy ước v1.1:
+3. Chạy EDA thống kê & vẽ 4 biểu đồ:
    ```bash
-   python -m src.preprocess.preprocess_nifti --data-dir /content/brats2020/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData --out-dir /content/preprocessed/brats2020
+   python -m src.preprocess.eda_brats2020 --data-dir /content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData --splits configs/splits.json --out-dir results
+   ```
+4. Tiền xử lý toàn bộ 369 ca theo Quy ước v1.1 (xuất 1 `.npz`/ca + `metadata/*.json`):
+   ```bash
+   python -m src.preprocess.preprocess_nifti --data-dir /content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData --out-dir /content/preprocessed_brats2020
    ```

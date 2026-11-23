@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 import nibabel as nib
-from nibabel.orientations import axcodes2ornt, io_orientation, ornt_transform, apply_orientation
+from nibabel.orientations import apply_orientation, axcodes2ornt, io_orientation, ornt_transform
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -30,14 +30,14 @@ def get_spatial_unit_factor_to_mm(img: nib.Nifti1Image) -> tuple[str, float]:
 
 def preprocess_case(
     case_dir: Path,
-    out_images_dir: Path,
+    out_cases_dir: Path,
     out_meta_dir: Path,
     image_size: int = 224,
     margin_xy: int = 5,
     eps: float = 1e-8,
-    save_slices: bool = True,
+    save_data: bool = True,
 ) -> dict:
-    """Tiền xử lý 1 ca BraTS 2020, xuất lát .npz (hoặc chỉ metadata) và metadata/<case_id>.json."""
+    """Tiền xử lý 1 ca BraTS 2020, xuất 1 file cases/<case_id>.npz (float16 image + uint8 mask) và metadata/<case_id>.json."""
     case_id = case_dir.name
     files = find_case_files(case_dir)
     if any(v is None for v in files.values()):
@@ -139,20 +139,24 @@ def preprocess_case(
     img_resized = F.interpolate(img_t, size=(image_size, image_size), mode="bilinear", align_corners=False)
     seg_resized = F.interpolate(seg_t, size=(image_size, image_size), mode="nearest")
 
-    img_out = img_resized.numpy().astype(np.float32)  # [Z, 4, 224, 224]
-    seg_out = seg_resized.numpy().astype(np.float32)  # [Z, 1, 224, 224]
+    # Lưu trên đĩa dạng float16 + uint8 để giảm ~3-4x dung lượng khi lưu Kaggle Dataset;
+    # DataLoader sẽ ép lại về float32 [4, 224, 224] và [1, 224, 224] đúng Quy ước v1.1.
+    img_out = img_resized.numpy().astype(np.float16)              # [Z, 4, 224, 224]
+    seg_out = seg_resized.squeeze(1).numpy().astype(np.uint8)     # [Z, 224, 224]
+    slice_has_tumor = (seg_out.reshape(num_slices_z, -1).sum(axis=1) > 0).astype(np.uint8)
+    slice_has_brain = (
+        np.any(img_out != 0, axis=1).reshape(num_slices_z, -1).sum(axis=1) > 0
+    ).astype(np.uint8)
 
-    if save_slices:
-        case_out_dir = out_images_dir / case_id
-        case_out_dir.mkdir(parents=True, exist_ok=True)
-        for z in range(num_slices_z):
-            np.savez_compressed(
-                case_out_dir / f"slice_{z:03d}.npz",
-                image=img_out[z],
-                mask=seg_out[z],
-                case_id=case_id,
-                slice_index=z,
-            )
+    if save_data:
+        out_cases_dir.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(
+            out_cases_dir / f"{case_id}.npz",
+            images=img_out,
+            masks=seg_out,
+            slice_has_tumor=slice_has_tumor,
+            slice_has_brain=slice_has_brain,
+        )
 
     meta = {
         "case_id": case_id,
@@ -182,6 +186,8 @@ def preprocess_case(
         "padded_shape_xy": [side, side],
         "resized_shape_xy": [image_size, image_size],
         "num_slices_z": num_slices_z,
+        "num_tumor_slices": int(slice_has_tumor.sum()),
+        "num_brain_slices": int(slice_has_brain.sum()),
         "interpolation": {
             "image": "bilinear",
             "mask": "nearest",
@@ -203,20 +209,36 @@ def main() -> None:
     parser.add_argument("--image-size", type=int, default=224)
     args = parser.parse_args()
 
-    out_images_dir = args.out_dir / "slices"
+    out_cases_dir = args.out_dir / "cases"
     out_meta_dir = args.out_dir / "metadata"
 
     case_dirs = sorted(
         p for p in args.data_dir.iterdir()
         if p.is_dir() and p.name.startswith("BraTS20_Training_")
     )
+    if not case_dirs:
+        raise RuntimeError(f"Không tìm thấy thư mục BraTS20_Training_* trong {args.data_dir}")
+
+    index_records = []
     for cd in tqdm(case_dirs, desc="Preprocessing BraTS 2020"):
-        preprocess_case(
+        meta = preprocess_case(
             cd,
-            out_images_dir=out_images_dir,
+            out_cases_dir=out_cases_dir,
             out_meta_dir=out_meta_dir,
             image_size=args.image_size,
         )
+        index_records.append(
+            {
+                "case_id": meta["case_id"],
+                "num_slices_z": meta["num_slices_z"],
+                "num_brain_slices": meta["num_brain_slices"],
+                "num_tumor_slices": meta["num_tumor_slices"],
+            }
+        )
+
+    (args.out_dir / "index.json").write_text(
+        json.dumps(index_records, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
     print(f"Hoàn tất tiền xử lý {len(case_dirs)} ca vào {args.out_dir}")
 
 
