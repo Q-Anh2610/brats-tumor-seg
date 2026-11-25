@@ -1,0 +1,12 @@
+{
+  "sha256": {
+    "eda_brats2020_cases.csv": "af58714e7a63b63329c1da454a05eee2f15a2db85b43672cc34e50982a034af4",
+    "splits.json": "90119e833025c43fc827aecc04fe79687850b88ef15eb8ed39df5dd4986a4c3b",
+    "eda_africa_cases.csv": "c3fb3a9d373b2b7460a4bf7ef7c4baafdbedd1d19fcbb9c5870b44112ceab291"
+  },
+  "brats2020_source": "https://github.com/Q-Anh2610/brats-tumor-seg",
+  "brats2020_reference_commit": "e504d38d485b4008aa28fc9e22101687436f5d63",
+  "africa_source": "trinhthuhuyenhuyen/brats-africa-preprocessed-224-v11/1",
+  "statistics": "Input NIfTI volumes before shared z-score, nonzero voxels per MRI channel",
+  "input_hash_format": "SHA256 of UTF-8 file bytes, CRLF normalized to LF"
+}

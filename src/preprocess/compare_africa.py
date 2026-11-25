@@ -22,6 +22,49 @@ from src.preprocess.audit_africa import find_case_files
 COHORTS = ["BraTS 2020", "Africa glioma", "Africa other tumors"]
 COLORS = ["#2563eb", "#d97706", "#7c3aed"]
 CHANNELS = [("t1", "T1"), ("t1ce", "T1ce"), ("t2", "T2"), ("flair", "FLAIR")]
+MRI_FEATURES = [f'{channel}_{stat}_brain' for channel, _ in CHANNELS
+                for stat in ('mean', 'std', 'p05', 'p50', 'p95')] + ['brain_volume_ml']
+
+
+def load_features(brats2020_csv: Path, africa_csv: Path, splits_file: Path) -> pd.DataFrame:
+    """Đối chiếu ID, nhóm và split trước khi ghép thống kê theo bệnh nhân."""
+    reference = pd.read_csv(brats2020_csv)
+    africa = pd.read_csv(africa_csv)
+    splits = json.loads(splits_file.read_text(encoding='utf-8'))['splits']
+    if set(splits) != {'train', 'val', 'test'}:
+        raise ValueError('Split phải gồm train, val và test')
+    for name, count in [('train', 259), ('val', 55), ('test', 55)]:
+        if len(splits[name]) != count:
+            raise ValueError(f'Split {name} phải có {count} ca')
+    all_ids = [case_id for values in splits.values() for case_id in values]
+    if len(set(all_ids)) != 369:
+        raise ValueError('ID bị trùng trong hoặc giữa các split')
+    mapping = {case_id: name for name, values in splits.items() for case_id in values}
+    if len(reference) != 369 or not reference.case_id.is_unique or set(reference.case_id) != set(mapping):
+        raise ValueError('BraTS 2020 phải khớp đủ 369 ID trong split')
+    if len(africa) != 146 or not africa.case_id.is_unique:
+        raise ValueError('Africa phải có đủ 146 ID không trùng')
+    if set(africa.case_id) & set(reference.case_id):
+        raise ValueError('ID hai bộ dữ liệu bị trùng')
+    if africa.groupby('group').size().to_dict() != {'95_Glioma': 95, '51_OtherNeoplasms': 51}:
+        raise ValueError('Africa cần đúng 95 glioma và 51 u khác')
+    reference['dataset'], reference['cohort'] = 'BraTS2020', COHORTS[0]
+    reference['split'] = reference.case_id.map(mapping)
+    africa['dataset'], africa['split'] = 'BraTSAfrica', 'external_descriptive'
+    africa['cohort'] = africa['group'].map({'95_Glioma': COHORTS[1], '51_OtherNeoplasms': COHORTS[2]})
+    frame = pd.concat([reference, africa], ignore_index=True)
+    frame['brain_volume_ml'] = (frame['brain_voxels'] * frame['spacing_x_mm'] *
+                                frame['spacing_y_mm'] * frame['spacing_z_mm'] / 1000)
+    required = MRI_FEATURES + ['wt_volume_ml', 'wt_voxels', 'brain_voxels',
+                              'num_slices_z', 'num_tumor_slices', 'wt_ratio_in_brain', 'tumor_slice_ratio']
+    if not np.isfinite(frame[required].to_numpy(dtype=float)).all():
+        raise ValueError('Thống kê có NaN hoặc Inf')
+    if (frame['brain_voxels'] <= 0).any() or (frame['num_slices_z'] <= 0).any():
+        raise ValueError('Số voxel não hoặc số lát không hợp lệ')
+    for column in ['wt_ratio_in_brain', 'tumor_slice_ratio']:
+        if not frame[column].between(0, 1).all():
+            raise ValueError(f'{column}: tỉ lệ nằm ngoài [0, 1]')
+    return frame
 
 
 def cohort_table(frame: pd.DataFrame) -> pd.DataFrame:
@@ -104,17 +147,24 @@ def run_pca(frame: pd.DataFrame, feature_names: list[str], out_dir: Path,
     pd.DataFrame({"feature": feature_names, "PC1": pca.components_[0],
                   "PC2": pca.components_[1]}).to_csv(out_dir / f"pca_{suffix}_loadings.csv", index=False)
 
-    fig, axis = plt.subplots(figsize=(8.6, 6.2), layout="constrained")
-    for cohort, color in zip(COHORTS, COLORS):
-        selected = frame["cohort"] == cohort
-        axis.scatter(projected[selected, 0], projected[selected, 1], s=24,
-                     alpha=0.58, color=color, label=f"{cohort} (n={int(selected.sum())})")
+    fig, axes = plt.subplots(1, 2, figsize=(13, 5.5), layout="constrained")
     ratio = pca.explained_variance_ratio_
-    axis.set(xlabel=f"PC1 ({100 * ratio[0]:.1f}% train variance)",
-             ylabel=f"PC2 ({100 * ratio[1]:.1f}% train variance)",
-             title=f"PCA of {description}\nScaler and PCA fitted on BraTS 2020 training cases only")
-    axis.legend(fontsize=9)
-    axis.grid(alpha=0.15)
+    for axis in axes:
+        for cohort, color in zip(COHORTS, COLORS):
+            selected = frame['cohort'] == cohort
+            axis.scatter(projected[selected, 0], projected[selected, 1], s=24,
+                         alpha=0.58, color=color, label=f'{cohort} (n={int(selected.sum())})')
+        axis.set(xlabel=f'PC1 ({100 * ratio[0]:.1f}% train variance)',
+                 ylabel=f'PC2 ({100 * ratio[1]:.1f}% train variance)')
+        axis.grid(alpha=0.15)
+    axes[0].set_title('All 515 cases')
+    axes[0].legend(fontsize=8)
+    low, high = np.quantile(projected, [0.01, 0.99], axis=0)
+    margin = np.maximum(high - low, 1e-6) * 0.05
+    axes[1].set_xlim(low[0] - margin[0], high[0] + margin[0])
+    axes[1].set_ylim(low[1] - margin[1], high[1] + margin[1])
+    axes[1].set_title('Central view, 1st to 99th percentile bounds\nAll cases retained in PCA and CSV')
+    fig.suptitle(f'PCA of {description}\nScaler and PCA fitted on BraTS 2020 train only')
     fig.savefig(out_dir / "figures" / f"africa_04_pca_{suffix}.png", dpi=180)
     plt.close(fig)
     metadata = {"feature_names": feature_names, "num_features": len(feature_names),
@@ -173,26 +223,11 @@ def main() -> None:
     parser.add_argument("--brats2020-csv", type=Path, required=True)
     parser.add_argument("--africa-csv", type=Path, required=True)
     parser.add_argument("--splits", type=Path, required=True)
-    parser.add_argument("--africa-data-dir", type=Path, required=True)
+    parser.add_argument("--africa-data-dir", type=Path)
     parser.add_argument("--out-dir", type=Path, required=True)
+    parser.add_argument('--stage', choices=['all', 'prepare', 'plots', 'pca'], default='all')
     args = parser.parse_args()
-    reference = pd.read_csv(args.brats2020_csv)
-    africa = pd.read_csv(args.africa_csv)
-    splits = json.loads(args.splits.read_text(encoding="utf-8"))["splits"]
-    mapping = {case_id: split for split, ids in splits.items() for case_id in ids}
-    if len(reference) != 369 or set(reference["case_id"]) != set(mapping):
-        raise ValueError("Bảng BraTS 2020 không khớp 369 ca trong split")
-    if len(africa) != 146 or africa["case_id"].duplicated().any():
-        raise ValueError("Bảng Africa cần đủ 146 ca riêng biệt")
-    reference["dataset"], reference["cohort"] = "BraTS2020", COHORTS[0]
-    reference["split"] = reference["case_id"].map(mapping)
-    africa["dataset"] = "BraTSAfrica"
-    africa["cohort"] = africa["group"].map({"95_Glioma": COHORTS[1], "51_OtherNeoplasms": COHORTS[2]})
-    if africa["cohort"].isna().any():
-        raise ValueError("Có nhóm Africa chưa xác định")
-    frame = pd.concat([reference, africa], ignore_index=True)
-    frame["brain_volume_ml"] = (frame["brain_voxels"] * frame["spacing_x_mm"] *
-                                 frame["spacing_y_mm"] * frame["spacing_z_mm"] / 1000)
+    frame = load_features(args.brats2020_csv, args.africa_csv, args.splits)
     out = args.out_dir
     out.mkdir(parents=True, exist_ok=True)
     figures = out / "figures"
@@ -200,17 +235,22 @@ def main() -> None:
     frame.to_csv(out / "combined_case_features.csv", index=False)
     table = cohort_table(frame)
     table.to_csv(out / "cohort_comparison.csv", index=False)
-    draw_distributions(frame, figures)
-    features = [f"{channel}_{stat}_brain" for channel, _ in CHANNELS
-                for stat in ("mean", "std", "p05", "p50", "p95")] + ["brain_volume_ml"]
-    main_pca = run_pca(frame, features, out, "mri", "MRI statistics (no tumor-label features)")
-    label_pca = run_pca(frame, features + ["wt_volume_ml"], out, "with_wt", "MRI statistics and GT tumor volume")
-    draw_africa_samples(args.africa_data_dir, africa, figures)
-    provenance = {"inputs": {str(path.name): hashlib.sha256(path.read_bytes()).hexdigest()
+    if args.stage in ['all', 'plots']:
+        draw_distributions(frame, figures)
+    if args.stage in ['all', 'pca']:
+        run_pca(frame, MRI_FEATURES, out, 'mri', 'MRI statistics (no tumor-label features)')
+        run_pca(frame, MRI_FEATURES + ['wt_volume_ml'], out, 'with_wt', 'MRI statistics and GT tumor volume')
+    if args.stage == 'all' and args.africa_data_dir is not None:
+        africa = pd.read_csv(args.africa_csv)
+        draw_africa_samples(args.africa_data_dir, africa, figures)
+    provenance = {"last_stage": args.stage,
+                  "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                  "input_hash_format": "SHA256 of UTF-8 file bytes, CRLF normalized to LF",
+                  "inputs": {str(path.name): hashlib.sha256(path.read_bytes().replace(b'\r\n', b'\n')).hexdigest()
                              for path in (args.brats2020_csv, args.africa_csv, args.splits)},
-                  "pca_fit_count": len(main_pca["fit_cases"]),
-                  "pca_mri_features": main_pca["num_features"],
-                  "pca_with_wt_features": label_pca["num_features"],
+                  "pca_fit_count": 259,
+                  "pca_mri_features": len(MRI_FEATURES),
+                  "pca_with_wt_features": len(MRI_FEATURES) + 1,
                   "notes": ["So sánh cường độ trên NIfTI đầu vào, chưa dùng z-score của pipeline chung",
                             "PCA chỉ mô tả phân bố, không chứng minh nguyên nhân domain shift",
                             "Không trộn Africa vào train/validation hoặc chọn checkpoint"]}

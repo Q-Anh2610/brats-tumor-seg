@@ -1,0 +1,18 @@
+{
+  "last_stage": "pca",
+  "script_sha256": "787bcc6ee34076bc376e776193b779c1ad8d72050a0c457ee1096ef3fbf837aa",
+  "input_hash_format": "SHA256 of UTF-8 file bytes, CRLF normalized to LF",
+  "inputs": {
+    "eda_brats2020_cases.csv": "af58714e7a63b63329c1da454a05eee2f15a2db85b43672cc34e50982a034af4",
+    "eda_africa_cases.csv": "c3fb3a9d373b2b7460a4bf7ef7c4baafdbedd1d19fcbb9c5870b44112ceab291",
+    "splits.json": "90119e833025c43fc827aecc04fe79687850b88ef15eb8ed39df5dd4986a4c3b"
+  },
+  "pca_fit_count": 259,
+  "pca_mri_features": 21,
+  "pca_with_wt_features": 22,
+  "notes": [
+    "So sánh cường độ trên NIfTI đầu vào, chưa dùng z-score của pipeline chung",
+    "PCA chỉ mô tả phân bố, không chứng minh nguyên nhân domain shift",
+    "Không trộn Africa vào train/validation hoặc chọn checkpoint"
+  ]
+}
