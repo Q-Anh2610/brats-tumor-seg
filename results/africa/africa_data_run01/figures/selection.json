@@ -1,0 +1,44 @@
+[
+  {
+    "case_id": "BraTS-SSA-00180-000",
+    "group": "95_Glioma",
+    "selection": "Small",
+    "wt_volume_ml_original": 38.216,
+    "slice_z": 54
+  },
+  {
+    "case_id": "BraTS-SSA-00225-000",
+    "group": "95_Glioma",
+    "selection": "Median",
+    "wt_volume_ml_original": 162.872,
+    "slice_z": 104
+  },
+  {
+    "case_id": "BraTS-SSA-00213-000",
+    "group": "95_Glioma",
+    "selection": "Large",
+    "wt_volume_ml_original": 268.647,
+    "slice_z": 80
+  },
+  {
+    "case_id": "BraTS-SSA-00208-000",
+    "group": "51_OtherNeoplasms",
+    "selection": "Small",
+    "wt_volume_ml_original": 25.243,
+    "slice_z": 44
+  },
+  {
+    "case_id": "BraTS-SSA-00191-000",
+    "group": "51_OtherNeoplasms",
+    "selection": "Median",
+    "wt_volume_ml_original": 82.801,
+    "slice_z": 64
+  },
+  {
+    "case_id": "BraTS-SSA-00040-000",
+    "group": "51_OtherNeoplasms",
+    "selection": "Large",
+    "wt_volume_ml_original": 248.851,
+    "slice_z": 82
+  }
+]

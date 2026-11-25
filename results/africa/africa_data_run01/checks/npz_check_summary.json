@@ -1,0 +1,22 @@
+{
+  "num_cases": 146,
+  "num_valid_cases": 146,
+  "by_group": {
+    "95_Glioma": 95,
+    "51_OtherNeoplasms": 51
+  },
+  "image_shape": [
+    155,
+    4,
+    224,
+    224
+  ],
+  "mask_shape": [
+    155,
+    224,
+    224
+  ],
+  "image_dtype": "float16",
+  "mask_dtype": "uint8",
+  "note": "Kiểm tra NPZ và metadata, không kiểm tra lại hình học bằng NIfTI gốc"
+}
