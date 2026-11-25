@@ -1,0 +1,7 @@
+{
+  "dataset": "trinhthuhuyenhuyen/brats-africa-preprocessed-224-v11",
+  "num_checked_cases": 146,
+  "image_space": "preprocessed_224x224",
+  "overlay": "whole_tumor_ground_truth",
+  "output_dir": "/content/drive/MyDrive/brats_africa_midterm/africa_data_run01"
+}
