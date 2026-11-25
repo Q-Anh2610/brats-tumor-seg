@@ -1,0 +1,56 @@
+[
+  {
+    "case_id": "BraTS20_Training_048",
+    "group": "low",
+    "ras_axial_slice": 51,
+    "selection": "largest GT area, fallback prediction, then brain",
+    "dice_3d": 0.6372442492197434,
+    "channel": "flair",
+    "figure": "low_BraTS20_Training_048_ras_z051.png"
+  },
+  {
+    "case_id": "BraTS20_Training_275",
+    "group": "low",
+    "ras_axial_slice": 54,
+    "selection": "largest GT area, fallback prediction, then brain",
+    "dice_3d": 0.7020090870367741,
+    "channel": "flair",
+    "figure": "low_BraTS20_Training_275_ras_z054.png"
+  },
+  {
+    "case_id": "BraTS20_Training_283",
+    "group": "median",
+    "ras_axial_slice": 113,
+    "selection": "largest GT area, fallback prediction, then brain",
+    "dice_3d": 0.91904,
+    "channel": "flair",
+    "figure": "median_BraTS20_Training_283_ras_z113.png"
+  },
+  {
+    "case_id": "BraTS20_Training_184",
+    "group": "median",
+    "ras_axial_slice": 65,
+    "selection": "largest GT area, fallback prediction, then brain",
+    "dice_3d": 0.9218202583612427,
+    "channel": "flair",
+    "figure": "median_BraTS20_Training_184_ras_z065.png"
+  },
+  {
+    "case_id": "BraTS20_Training_362",
+    "group": "high",
+    "ras_axial_slice": 71,
+    "selection": "largest GT area, fallback prediction, then brain",
+    "dice_3d": 0.9631570205978484,
+    "channel": "flair",
+    "figure": "high_BraTS20_Training_362_ras_z071.png"
+  },
+  {
+    "case_id": "BraTS20_Training_347",
+    "group": "high",
+    "ras_axial_slice": 101,
+    "selection": "largest GT area, fallback prediction, then brain",
+    "dice_3d": 0.9669138164713386,
+    "channel": "flair",
+    "figure": "high_BraTS20_Training_347_ras_z101.png"
+  }
+]

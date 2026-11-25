@@ -1,0 +1,56 @@
+EVAL / VIZ GIỮA KỲ
+
+Cách tổ chức
+Notebook giữ các bước cấu hình, gọi script và hiển thị bảng/hình.
+Các hàm đọc NIfTI, tính metric và vẽ overlay nằm trong src/ để dùng lại.
+Chú thích nêu lý do của bước xử lý, không lặp lại từng dòng lệnh.
+
+Các file chính
+src/eval/prepare_data.py tìm thư mục training và kiểm tra đủ file của test split.
+src/eval/nifti_io.py đọc file, kiểm tra mã nhãn, đơn vị và lưới không gian.
+src/eval/metrics_3d.py tính Dice, IoU, HD95 trên cả khối 3D của từng bệnh nhân.
+src/eval/evaluate.py xuất per_case.csv, summary.csv và run_manifest.json.
+src/viz/overlay.py đưa các ảnh về cùng hướng hiển thị rồi vẽ MRI, GT, dự đoán.
+
+Chạy thử trước khi push
+Tải eval_viz_reviewed.zip và mở notebooks/04_eval_overlay.ipynb trong Colab CPU.
+Ô đầu clone main, ô tiếp theo nhận ZIP công cụ từ máy cá nhân.
+Sửa PRED_DIR nếu thư mục Drive khác vị trí đã dùng trong lần chạy trước.
+Chạy từ trên xuống, kiểm tra hình một ca rồi mới chạy cả 55 ca.
+Nếu đã có dữ liệu và Kaggle API trong runtime thì các bước chuẩn bị dùng lại.
+Không cần push code mới để Colab lấy các file này.
+
+Đơn vị không gian
+Notebook đã chạy ghi nhận 55 GT và 55 FLAIR có đơn vị mm.
+Cả 55 mask dự đoán có đơn vị unknown, nhưng shape, spacing, affine khớp GT.
+Giữ ASSUME_UNKNOWN_MM=True cho bộ dự đoán đó, không sửa header gốc.
+Bản sửa tiếp tục yêu cầu GT/FLAIR có đơn vị xác định và spacing 1 mm.
+Nếu thay nguồn dữ liệu, phải kiểm tra lại thay vì dùng giả định này mặc định.
+
+Công thức và tổng hợp
+Dice = 2*intersection/(pred_voxels+gt_voxels).
+IoU = intersection/(pred_voxels+gt_voxels-intersection).
+HD95 là max của percentile 95 từng chiều khoảng cách biên, đơn vị mm.
+Biên dùng lân cận 6 hướng, ngoài thể tích là nền.
+Hai mask rỗng cho Dice/IoU bằng 1 và HD95 bằng 0.
+Một mask rỗng cho Dice/IoU bằng 0 và HD95 vô hạn.
+SD dùng ddof=1, chỉ một ca thì ghi N/A.
+Nếu có HD95 vô hạn, báo số ca thất bại và nhóm hữu hạn riêng.
+
+Cách đọc hình
+GT màu xanh, dự đoán màu hồng, ba ô cùng vị trí giải phẫu.
+Lát mặc định có diện tích GT lớn nhất sau RAS+.
+Dice trên tiêu đề là Dice của cả khối, không phải điểm riêng lát đang xem.
+selection.json ghi quy tắc chọn ca và chỉ số lát.
+
+Lưu kết quả
+Bản sửa ghi vào unetpp_test_run02 để giữ nguyên unetpp_test_run01 đã chạy.
+Tên thư mục đã tồn tại sẽ báo lỗi, đổi tên lần chạy thay vì ghi đè.
+ZIP nguồn ở cuối chứa đúng các file .py đang có trong runtime.
+Nếu sửa ô notebook trong Colab, lưu/download notebook đang mở riêng để giữ sửa đổi.
+Sau khi kết quả đúng, chép code và bảng/hình về branch cục bộ rồi commit/push.
+
+Lưu ý về bản sửa
+Notebook mới không giữ output cũ vì code và cách trình bày đã được chỉnh.
+Kết quả đã gửi được đối chiếu trong docs/RESULTS_CHECK.txt, chưa tính lại từ NIfTI.
+Các file code mới cần chạy lại trong Colab để tạo output cho phiên bản này.

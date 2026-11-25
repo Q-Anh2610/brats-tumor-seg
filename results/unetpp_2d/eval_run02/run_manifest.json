@@ -1,0 +1,1086 @@
+{
+  "created_utc": "2026-11-25T03:03:39.799378+00:00",
+  "command": [
+    "/content/brats-eval-workspace/src/eval/evaluate.py",
+    "--raw-dir",
+    "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData",
+    "--pred-dir",
+    "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d",
+    "--splits",
+    "/content/brats-eval-workspace/configs/splits.json",
+    "--split-name",
+    "test",
+    "--assume-unknown-mm",
+    "--out-dir",
+    "/content/drive/MyDrive/brats_midterm_eval/unetpp_test_run02"
+  ],
+  "git_commit": "592a4b79ac226951b5d82883a350e201e3be20f6",
+  "git_status": "?? VALIDATION.txt\n?? docs/EVAL_VIZ_GIUA_KY.txt\n?? docs/RESULTS_CHECK.txt\n?? notebooks/04_eval_overlay.ipynb\n?? requirements-eval-viz.txt\n?? src/eval/evaluate.py\n?? src/eval/metrics_3d.py\n?? src/eval/nifti_io.py\n?? src/eval/prepare_data.py\n?? src/viz/overlay.py\n?? tests/",
+  "python": "3.13.18",
+  "versions": {
+    "numpy": "2.4.6",
+    "scipy": "1.16.3",
+    "nibabel": "5.4.2"
+  },
+  "split_name": "test",
+  "split_sha256": "90119e833025c43fc827aecc04fe79687850b88ef15eb8ed39df5dd4986a4c3b",
+  "scope": "full_split",
+  "n_cases": 55,
+  "expected_split_cases": 55,
+  "assume_unknown_mm": true,
+  "metrics": {
+    "hd95": "max(p95(P->G),p95(G->P)), linear percentile, 6-connectivity",
+    "sd_ddof": 1,
+    "grid": "original",
+    "threshold": "already binary, no new threshold"
+  },
+  "n_gt_empty": 0,
+  "n_pred_empty": 0,
+  "inputs": [
+    {
+      "case_id": "BraTS20_Training_004",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_004/BraTS20_Training_004_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_004_pred_wt.nii.gz",
+      "gt_sha256": "f64c6ce007c614599391d4257a0b2f1d6f12258743f42445cf94965fbd882967",
+      "pred_sha256": "5781c5bb2b2a663b4279a4e7c91eb75890702a9fe306b0d9a53715d4bc414df8"
+    },
+    {
+      "case_id": "BraTS20_Training_013",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_013/BraTS20_Training_013_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_013_pred_wt.nii.gz",
+      "gt_sha256": "25bff3b50af82f09dee53bdb9d4010ca3be1ef81d76f3d8f13e51f96f605126a",
+      "pred_sha256": "8e9f7e3d9b3c9339e9989a0583dfddeb3d2377d645ecccb6dc95c7acdcd8cbe2"
+    },
+    {
+      "case_id": "BraTS20_Training_014",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_014/BraTS20_Training_014_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_014_pred_wt.nii.gz",
+      "gt_sha256": "ae47e970a97e48679e1c24504cb77ab5c59c218211fb0d07198d9f3c9e481f96",
+      "pred_sha256": "7b148231dcb13afe11b458dd051e58356a7bad0ee4e889452c6182672169b83c"
+    },
+    {
+      "case_id": "BraTS20_Training_016",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_016/BraTS20_Training_016_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_016_pred_wt.nii.gz",
+      "gt_sha256": "4c92be0efe9521ec11247a8910aa8e5eccc3e993a7d251c9f0bcc74d358d7041",
+      "pred_sha256": "dc3276cd54c80ebb1704d280b988e8e630dad9e9d3dae47d735c77264721d2f0"
+    },
+    {
+      "case_id": "BraTS20_Training_017",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_017/BraTS20_Training_017_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_017_pred_wt.nii.gz",
+      "gt_sha256": "74035f2b9aa2b8449dae37779e0d586e4052c217a6da382c2cf1ce7f2612845e",
+      "pred_sha256": "c65d58a1717fefa3b8847f812fb5165b16d01c85f3884b6d865862612af677d9"
+    },
+    {
+      "case_id": "BraTS20_Training_023",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_023/BraTS20_Training_023_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_023_pred_wt.nii.gz",
+      "gt_sha256": "f0f6e63b79263edf525f25c0190bd64261c2bc773532a1dc4e52bf01555028d5",
+      "pred_sha256": "469f9dd6b97e53e74307e36c0ba607f1a681bba5a24bd5975f140a896f38c3fb"
+    },
+    {
+      "case_id": "BraTS20_Training_041",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_041/BraTS20_Training_041_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_041_pred_wt.nii.gz",
+      "gt_sha256": "81dece4a83df05f08994a83761accfdb0728d348f0d31c9e252021d81ac524ff",
+      "pred_sha256": "ca68de850e703a6bad6e863073fc2aeea36926f10c76aefd7138becc169e8d50"
+    },
+    {
+      "case_id": "BraTS20_Training_045",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_045/BraTS20_Training_045_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_045_pred_wt.nii.gz",
+      "gt_sha256": "9753a8d7a90743d378d9fcbe69730680bf5830cb253002511750b1b114ff166d",
+      "pred_sha256": "6ff11fcb969f516ea0917fa5c6b1c3862e155e0e41584e956ac0b29220771e00"
+    },
+    {
+      "case_id": "BraTS20_Training_048",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_048/BraTS20_Training_048_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_048_pred_wt.nii.gz",
+      "gt_sha256": "c2e45b9d3ff0546cfbe3d7af137870cfda84759f63e6dc3531d1a903805eff65",
+      "pred_sha256": "3f8e2825f4f0f01cbf7c80970bbca1eca1eaf3235ec005afbedc93627f4abb8b"
+    },
+    {
+      "case_id": "BraTS20_Training_050",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_050/BraTS20_Training_050_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_050_pred_wt.nii.gz",
+      "gt_sha256": "c4a39253712dd19d6ea0218af3b9e5f5f1b04ce99e923f57a285374c5c56e3c8",
+      "pred_sha256": "cb902c31b113cf5546568da245b3fc105db1abd5ce11eb7d9698bedf95c1ebcc"
+    },
+    {
+      "case_id": "BraTS20_Training_053",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_053/BraTS20_Training_053_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_053_pred_wt.nii.gz",
+      "gt_sha256": "b26b3abd7be71bc5f6309f8867e72513e425fa0100ffe383b6bc45a75fba82e9",
+      "pred_sha256": "b36c6a75d6408685f494f159f9165902f083383441276ed9ad253b6ae8777cdb"
+    },
+    {
+      "case_id": "BraTS20_Training_058",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_058/BraTS20_Training_058_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_058_pred_wt.nii.gz",
+      "gt_sha256": "c82c9f22d9c82e8257b859a780e24941081a631b748856b760c2b2f8ba3a30bd",
+      "pred_sha256": "75fb129d539c54b8871302e9373de698b943dba4add6a93ad9d3b2e98ced5abe"
+    },
+    {
+      "case_id": "BraTS20_Training_064",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_064/BraTS20_Training_064_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_064_pred_wt.nii.gz",
+      "gt_sha256": "71f919143419ae1d2b21e6d80df2e626cca2309e78b3cb12a4fbc8b703a8e0ff",
+      "pred_sha256": "9a027134195f6f2457a67c026e041e4a854df186850ff28c9748593cea05a5ec"
+    },
+    {
+      "case_id": "BraTS20_Training_072",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_072/BraTS20_Training_072_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_072_pred_wt.nii.gz",
+      "gt_sha256": "0c713e80ead354d8887d6e7b67d827551a2978912af51d5217e980a738c28ecd",
+      "pred_sha256": "9e9b4b36cf8b94abd61ad74885e00539824df65d2b884ac09418b647b479e53e"
+    },
+    {
+      "case_id": "BraTS20_Training_080",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_080/BraTS20_Training_080_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_080_pred_wt.nii.gz",
+      "gt_sha256": "641f7e360c27813b059ab2d28bc1f4dcde75537545eca610b547404ff82c8f8a",
+      "pred_sha256": "da1b779efee21fe701dc0f6f111bc077eeb76dc664568d477d234881e044a76d"
+    },
+    {
+      "case_id": "BraTS20_Training_082",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_082/BraTS20_Training_082_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_082_pred_wt.nii.gz",
+      "gt_sha256": "a3a6011a46aea7763002e1b7d25f253fe5ede36fd3bae9cea80b15bc71d70e15",
+      "pred_sha256": "e59c073dc0edb2ee1efd06d98469395c4514b3172475f0e21b49a25b626dee10"
+    },
+    {
+      "case_id": "BraTS20_Training_102",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_102/BraTS20_Training_102_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_102_pred_wt.nii.gz",
+      "gt_sha256": "78620628c16f06d7f554851bddf75625f164e672f3b8c4fb103d63c620914bb1",
+      "pred_sha256": "078806879d6c6ab9399c657bb2caa47ce5ce6fd3d458bb8af329254290b7782b"
+    },
+    {
+      "case_id": "BraTS20_Training_111",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_111/BraTS20_Training_111_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_111_pred_wt.nii.gz",
+      "gt_sha256": "846b788ae250061c00ba8abcd502ecacc69f67d1a159ed66b2f2a528aa07f6bd",
+      "pred_sha256": "2ae9d41cedbd663ae6302d3d4e2c7be225bee38d90c25633309e4d8ad684d565"
+    },
+    {
+      "case_id": "BraTS20_Training_112",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_112/BraTS20_Training_112_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_112_pred_wt.nii.gz",
+      "gt_sha256": "ce32464f660a8ed7630e0004952e58a8bce0a0f6c5de155212f0619c351345ed",
+      "pred_sha256": "260a91a63955d250c3a0e9933c8ec5ab4c54814a9646713069104513ba7a5436"
+    },
+    {
+      "case_id": "BraTS20_Training_113",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_113/BraTS20_Training_113_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_113_pred_wt.nii.gz",
+      "gt_sha256": "74cda6dafa8c556227ef923d65c8841bc50c01f4e26e82038beea9e6e5da3b83",
+      "pred_sha256": "efcf529f15efb240ad469db7a86369accf246085d7e3d0f4519932f29bf92954"
+    },
+    {
+      "case_id": "BraTS20_Training_115",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_115/BraTS20_Training_115_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_115_pred_wt.nii.gz",
+      "gt_sha256": "f1e16448bda655fddec7b31fc87675633f575bdada17eac897332c44368a9ba5",
+      "pred_sha256": "a894399037e60cf696d32193e6f245f7b4357121297f2423c63dffdad2e0317e"
+    },
+    {
+      "case_id": "BraTS20_Training_120",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_120/BraTS20_Training_120_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_120_pred_wt.nii.gz",
+      "gt_sha256": "f07645324da62621bf37b344a2b62331ae39049b4d9f518521d6dac6de4a28ac",
+      "pred_sha256": "c9544ee8c59800062e2fe88464de788597e92ff3469d892111f0ce878afed09e"
+    },
+    {
+      "case_id": "BraTS20_Training_126",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_126/BraTS20_Training_126_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_126_pred_wt.nii.gz",
+      "gt_sha256": "405512138dc8b10017a9b261adbf990e189ae3a85dcf6e042ada79783f795246",
+      "pred_sha256": "45c3e3a222160eb92b2857c4c732c034a6dedbf008cf9f9bc1c8af89594a339a"
+    },
+    {
+      "case_id": "BraTS20_Training_136",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_136/BraTS20_Training_136_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_136_pred_wt.nii.gz",
+      "gt_sha256": "bf872fdaf419f7234f40298e496ca07c70a1d3284a50ee5f804c5afdd97df092",
+      "pred_sha256": "f5ee751f70ce7961bc8fe13640e0a4ece83bbec6538ba502857dcb122339ae78"
+    },
+    {
+      "case_id": "BraTS20_Training_141",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_141/BraTS20_Training_141_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_141_pred_wt.nii.gz",
+      "gt_sha256": "2b0f9871cc0ceb100a60584fe5eca37229df6329bc35586b0f34eb75e7e05107",
+      "pred_sha256": "0c1824ee6539a0b86408bfd54f226f2575348a24e2276d61484c16b623ce31a8"
+    },
+    {
+      "case_id": "BraTS20_Training_143",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_143/BraTS20_Training_143_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_143_pred_wt.nii.gz",
+      "gt_sha256": "fbdff87100a3fec15786e43219ce88cb9e8d869c9f83b66ca4f259194500db95",
+      "pred_sha256": "eeb110c722ad86105042765f94d9091cd4a1d916c0f3f38646bb3821b69910f9"
+    },
+    {
+      "case_id": "BraTS20_Training_151",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_151/BraTS20_Training_151_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_151_pred_wt.nii.gz",
+      "gt_sha256": "3e437c9f34209c1c79c1f021d213fe129d25370892dc10e00d6b144ebe7a0cf4",
+      "pred_sha256": "50a730770e84dd9ae8910d2fe770c649cdd072d717ba720997621a1182075f97"
+    },
+    {
+      "case_id": "BraTS20_Training_173",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_173/BraTS20_Training_173_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_173_pred_wt.nii.gz",
+      "gt_sha256": "cb274a809ab3cc1f6190517a95473a81617b2d419e25f13fcaf47b421f3a4f12",
+      "pred_sha256": "240f79c2c777056c21d5a41a8df61c71f1c8503d43ba3251229c0729b4903a1b"
+    },
+    {
+      "case_id": "BraTS20_Training_175",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_175/BraTS20_Training_175_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_175_pred_wt.nii.gz",
+      "gt_sha256": "15090499017ef1a7912fd8b9c2101b3295f6780bc34ad99c35f5013c87b819a2",
+      "pred_sha256": "873369f24b5fcb15d2cff257b48a44d72d9f6e66dc78c044195a4033a0356612"
+    },
+    {
+      "case_id": "BraTS20_Training_177",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_177/BraTS20_Training_177_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_177_pred_wt.nii.gz",
+      "gt_sha256": "c928b975ff76df55a87d219f3b1ba39c5403f637948f10bf5409361e577954b5",
+      "pred_sha256": "f21fc0efb4f4687247f19e857193a6b648d01bef089bb046b91658d7b89a9f2e"
+    },
+    {
+      "case_id": "BraTS20_Training_184",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_184/BraTS20_Training_184_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_184_pred_wt.nii.gz",
+      "gt_sha256": "7bd5b57c736fa447ea0ef52ceba2d3b2217663b17f35d432e4745cd4e82a6baf",
+      "pred_sha256": "00c5e88f664ce2717aaff7dcf630bdfe178236d0214f63baf596d15e3fe9d5bc"
+    },
+    {
+      "case_id": "BraTS20_Training_186",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_186/BraTS20_Training_186_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_186_pred_wt.nii.gz",
+      "gt_sha256": "3bd203485fde0b8c6a5f416732101e9108ee511e52c1fc08e4d97da38d14700b",
+      "pred_sha256": "205959a57728893c7a7a75aa878f40e386c0807b4944ad558fd21364de20be35"
+    },
+    {
+      "case_id": "BraTS20_Training_194",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_194/BraTS20_Training_194_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_194_pred_wt.nii.gz",
+      "gt_sha256": "d00ae794fc860809fff91e74b69a6d7bf439592c4458d8efea977af29c6e6cec",
+      "pred_sha256": "4085446a4ad5cebe07674c63b27fd70e12d76843405ab7940de5aab466a639af"
+    },
+    {
+      "case_id": "BraTS20_Training_195",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_195/BraTS20_Training_195_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_195_pred_wt.nii.gz",
+      "gt_sha256": "2b771c520a1a2d87eb6fcb904063804cde3863bd335391431fb02c52fc6ed8c8",
+      "pred_sha256": "6d9afe27a1521c04f442a284dd52eb6120071bb46a18aa91dd7e2f49cdca7e20"
+    },
+    {
+      "case_id": "BraTS20_Training_215",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_215/BraTS20_Training_215_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_215_pred_wt.nii.gz",
+      "gt_sha256": "441671a52670bd5b3065bc8ac5c48aefa298c63195b8aea4adb8847e57cb2aac",
+      "pred_sha256": "38d4d93259e10e3c21718d19615493eb6058da29505e4c782d3059da0924ead3"
+    },
+    {
+      "case_id": "BraTS20_Training_217",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_217/BraTS20_Training_217_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_217_pred_wt.nii.gz",
+      "gt_sha256": "212d68d953fb3a642e301f67c5b50a36e34ebd94130a2f7058f2a17a98339915",
+      "pred_sha256": "0b5011104f0002558c43c464e9fc68f9839a8b91914bdf7ef368ced3ba6c6428"
+    },
+    {
+      "case_id": "BraTS20_Training_230",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_230/BraTS20_Training_230_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_230_pred_wt.nii.gz",
+      "gt_sha256": "11b0d4456022810c84bae0268abcac051efa1be5f3115016d4445c70149826eb",
+      "pred_sha256": "a717f700c52705935f42e2bd60fab01d894cc9f6d374be592a5e19420d7c9cc7"
+    },
+    {
+      "case_id": "BraTS20_Training_236",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_236/BraTS20_Training_236_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_236_pred_wt.nii.gz",
+      "gt_sha256": "1dda51bc3ac2fadc141fdf1a43ed3ba64706c90a71c4870be891a8a316e6d227",
+      "pred_sha256": "f25b25edb33a9b41b00fd733e1181d1569456ba0ee2a6d817fe494f70f16ccc0"
+    },
+    {
+      "case_id": "BraTS20_Training_259",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_259/BraTS20_Training_259_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_259_pred_wt.nii.gz",
+      "gt_sha256": "0c4589085387546ada498392e95e3f391c57cbb654d4c01f232cb43b05e6f723",
+      "pred_sha256": "890c7924fcaca0ac221c02f171034eb3c0b3e675e66ea249d958d968eca21714"
+    },
+    {
+      "case_id": "BraTS20_Training_275",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_275/BraTS20_Training_275_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_275_pred_wt.nii.gz",
+      "gt_sha256": "9fd26fec0e86f4f3621b00028e5bd93be65a654be7198a0b50f3d543e6f4ba65",
+      "pred_sha256": "80324832fdf06cf93bf0dbd19e32707364f31328272d87558b29541ea2e38742"
+    },
+    {
+      "case_id": "BraTS20_Training_280",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_280/BraTS20_Training_280_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_280_pred_wt.nii.gz",
+      "gt_sha256": "0a3e68f7092ecad0624aa5014d21d8a04d7a03f700a39a6dc17b9f9a579c2f90",
+      "pred_sha256": "a6ce8c4939ff6e3baa222d7b456f6d34ec69c311ef138914e69a14dd47b0c128"
+    },
+    {
+      "case_id": "BraTS20_Training_283",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_283/BraTS20_Training_283_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_283_pred_wt.nii.gz",
+      "gt_sha256": "8eaca1c03175d52a79c44ca7ad0b3e57eedbd086a6bff6c4ba96b21fb48a82f9",
+      "pred_sha256": "8d77f45068827eea3bafa579c1ceb905c8712a2931c609e2459a63f9cce5b0c7"
+    },
+    {
+      "case_id": "BraTS20_Training_288",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_288/BraTS20_Training_288_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_288_pred_wt.nii.gz",
+      "gt_sha256": "f637a01cc6e0519f5bf171e5ad70949f64cbb58ef637d122afa767a77f78cd5f",
+      "pred_sha256": "64778f4f61f7a608b2590ece460c7420d3e3612cfe8947eb879ef528a27c2430"
+    },
+    {
+      "case_id": "BraTS20_Training_302",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_302/BraTS20_Training_302_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_302_pred_wt.nii.gz",
+      "gt_sha256": "8c8c2af476246a006b6c9fc2d8ccd7e72992a93822ae20b60017c4af7fba69da",
+      "pred_sha256": "47c5b8027a98a5b35edf5c0307344409f1cf41fa410773cb98ad5d3ad5334181"
+    },
+    {
+      "case_id": "BraTS20_Training_303",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_303/BraTS20_Training_303_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_303_pred_wt.nii.gz",
+      "gt_sha256": "edd9503b6887c07b71cb60279e7707f8e5dd09b32530cf5e50a9a3f31d20918f",
+      "pred_sha256": "507d6a3da4b1ba30c5319c03bb752f357e2f2fe0df41bdc150ae7391ee8198d8"
+    },
+    {
+      "case_id": "BraTS20_Training_309",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_309/BraTS20_Training_309_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_309_pred_wt.nii.gz",
+      "gt_sha256": "e7c32aca5a89462afbedd9396575b88d425b2bd053b20563d2cd08a5695964cd",
+      "pred_sha256": "e3acc873c5c38966c58aae264c269993e4f24b24de447bc39bf11ed84e96f8db"
+    },
+    {
+      "case_id": "BraTS20_Training_310",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_310/BraTS20_Training_310_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_310_pred_wt.nii.gz",
+      "gt_sha256": "4465401c14a77ff3bca39730394213c4188bfd6a8de5ef0ecc11e91781d7ee38",
+      "pred_sha256": "02054a682d6562e9ee4ae85429e49c410695f39d7683021ba19e73a966099017"
+    },
+    {
+      "case_id": "BraTS20_Training_328",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_328/BraTS20_Training_328_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_328_pred_wt.nii.gz",
+      "gt_sha256": "67f45778688c95353d21a1530a969567c3228a8135be9347341d3286ab0a8e54",
+      "pred_sha256": "06fe34ca64a0b68e003c79aeeea8577243521c93f20a84fbb3251c323962b4af"
+    },
+    {
+      "case_id": "BraTS20_Training_333",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_333/BraTS20_Training_333_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_333_pred_wt.nii.gz",
+      "gt_sha256": "555f14f97342430a541e3971c2606f10fb46d8a0ce4dbf39302324cbe6f41d0c",
+      "pred_sha256": "a5d49c22c9971cae1e901c531c8f2acc046d44776e0998b65a56ba47c8e94a73"
+    },
+    {
+      "case_id": "BraTS20_Training_340",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_340/BraTS20_Training_340_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_340_pred_wt.nii.gz",
+      "gt_sha256": "c75d938939685f3a13343e8b9aaa41ae4235f59e2c78039769c28aa062dbcca2",
+      "pred_sha256": "664be4da6316df269fd6dc3f8b7f50ce139eb862a7d2c2d3c28b992dcc362087"
+    },
+    {
+      "case_id": "BraTS20_Training_347",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_347/BraTS20_Training_347_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_347_pred_wt.nii.gz",
+      "gt_sha256": "6c0b64f8cc82dd3e44f129d504d17ba2575197a50f56ee64824ccac641336dcb",
+      "pred_sha256": "39a9fcef2cec4565ab2badd213b7ca6b0669eed6398c476007facbdb544230ff"
+    },
+    {
+      "case_id": "BraTS20_Training_354",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_354/BraTS20_Training_354_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_354_pred_wt.nii.gz",
+      "gt_sha256": "2604b235b808cbfffa1f9c212f7c41c300ff17939b16c26c8c5dcb4168363af5",
+      "pred_sha256": "6913a6fd745018256bdfb1862bd391f3eb0a8f5c718c7254466ac6fe0409cf24"
+    },
+    {
+      "case_id": "BraTS20_Training_357",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_357/BraTS20_Training_357_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_357_pred_wt.nii.gz",
+      "gt_sha256": "8c3b9fe4937a4dda4a651749adaa612cedbefc0377e52413fba01a80932672ae",
+      "pred_sha256": "27d55adce2ca0623bb9edef8a555cd64a0bc66b882a2770d72f31ba52878c50e"
+    },
+    {
+      "case_id": "BraTS20_Training_360",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_360/BraTS20_Training_360_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_360_pred_wt.nii.gz",
+      "gt_sha256": "0f65dec914ef1a9ec5278349ef93398037ff9ddee97ca98e9d55e0a1dc41b53e",
+      "pred_sha256": "a0aa86eb638bb556428be8c870804f548b04011c2344d5d31f12cf1648b9257f"
+    },
+    {
+      "case_id": "BraTS20_Training_362",
+      "shape": [
+        240,
+        240,
+        155
+      ],
+      "spacing_mm": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gt_unit": "mm",
+      "pred_unit": "unknown",
+      "gt_path": "/content/brats2020_raw/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_362/BraTS20_Training_362_seg.nii",
+      "pred_path": "/content/drive/MyDrive/brats_midterm_unetpp/preds_test_3d/BraTS20_Training_362_pred_wt.nii.gz",
+      "gt_sha256": "ecfd5acb0253b09a0098dd9b9049db4ca9128dc0950c31a42889d4a633091e12",
+      "pred_sha256": "48d850401bc026f8aec9420c390602c9fb9fca752b281f0e93118db150e73156"
+    }
+  ]
+}
