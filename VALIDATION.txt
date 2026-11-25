@@ -1,0 +1,14 @@
+KIỂM TRA BẢN SỬA
+20 kiểm thử dữ liệu giả chạy thành công, gồm metric, mask rỗng, spacing,
+đọc NIfTI, kiểm tra đầu vào và luồng eval/viz.
+Đã kiểm tra cú pháp tất cả các ô Python trong notebook.
+Đã đối chiếu AST các module với bản trước, giữ nguyên logic tính toán.
+Bản mới thêm kiểu tham số và sửa chú thích, lời giải thích, dấu câu.
+Không có dấu chấm phẩy trong các file code và tài liệu của gói mã.
+Đã đối chiếu CSV, manifest và lựa chọn sáu hình từ kết quả đã gửi.
+Trung bình và SD tính lại từ CSV khớp bảng summary.
+Đã xem hình của một ca Dice thấp và một ca Dice cao trong kết quả gốc.
+Đã kiểm tra đoạn upload nhận đúng ZIP bản sửa.
+Notebook mới chưa chạy trên Colab hoặc NIfTI thật, output được để trống.
+Không thay đổi notebook hoặc ZIP kết quả gốc trong Downloads.
+Không tạo commit, push hoặc merge trên GitHub.

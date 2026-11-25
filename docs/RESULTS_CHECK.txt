@@ -1,0 +1,16 @@
+ĐỐI CHIẾU TỆP KẾT QUẢ ĐÃ NHẬN
+
+Có 55 dòng bệnh nhân, không có ID trùng và khớp danh sách trong manifest.
+Trung bình và SD mẫu khớp khi tính lại từ per_case.csv.
+dice: 0.90157864 ± 0.06867968
+iou: 0.82710515 ± 0.10311825
+hd95_mm: 10.10462185 ± 16.98782881
+GT rỗng: 0, dự đoán rỗng: 0.
+HD95 hữu hạn ở cả 55 ca.
+Manifest ghi GT đơn vị mm và dự đoán đơn vị unknown ở cả 55 ca.
+Notebook đã chạy ghi nhận FLAIR đơn vị mm ở cả 55 ca và kiểm tra hình học thành công.
+Đây là kiểm tra tệp CSV, manifest và output notebook đã nhận, không tính lại metric từ NIfTI.
+File gốc trong Downloads không bị thay đổi.
+Notebook bản sửa được xóa output để không gán kết quả cũ cho code chưa chạy lại.
+Notebook đầu vào SHA256: 6f414c5d33c0f8bd8a20dc13d2c983418d353e9ceb53dd8d8d14c04e92114e02
+ZIP kết quả đầu vào SHA256: 84e47f4f122723339cd0e8e2ecbc8520f3be69d61b4df05145e0a21fc767f934
